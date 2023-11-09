@@ -5,13 +5,21 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { Box, Divider, Grid } from "@mui/material";
+import DoubleBarchart from "./DoubleBarchart";
 import Linechart from "./Linechart";
+import Barchart from "./Barchart";
 
-export default function LineChartCardComponent() {
+export default function LineChartCardComponent(props) {
+  const cardContent={
+    "Checking account":<Linechart/>,
+    "Invoices owed to you":<Barchart/>,
+    "Total cash flow": <DoubleBarchart/>,
+    "none":<Barchart/>
+  }
   return (
     <Box height="100%" width="100%">
       <Card>
-        <CardContent sx={{ padding: 0.6 }}>
+        <CardContent>
           <Grid container xs={12} sx={{ padding: 0 }}>
             <Grid
               item
@@ -61,7 +69,7 @@ export default function LineChartCardComponent() {
         <Divider />
 
         <CardContent>
-          <Linechart />
+          {cardContent[props.type]}
         </CardContent>
       </Card>
     </Box>

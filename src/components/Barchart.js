@@ -4,16 +4,19 @@ import * as d3 from 'd3';
 const Barchart = () => {
   const [data] = useState([200, 250, 60, 150, 100, 175]);
   const svgRef = useRef();
+  const fullWidth= 400;
+  const fullHeight = 128;
 
   useEffect(() => {
     // Setting up the svg container
-    const w = 400;
-    const h = 200;
+    const w = fullWidth;
+    const h = fullHeight;
     const svg = d3
       .select(svgRef.current)
-      .attr('width', w)
-      .attr('height', h)
-      .style('overflow', 'visible')
+      .attr('width', '100%')
+      .attr('height', '100%')
+      .attr('viewBox', `0 0 ${fullWidth} ${fullHeight}`)
+      .style('overflow', 'visible');
       // .style('margin', '50px');
 
     // Setting the scaling

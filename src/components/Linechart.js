@@ -4,17 +4,20 @@ import * as d3 from "d3";
 const Linechart = () => {
   const [data] = useState([9, 50, 35, 50, 94, 10,80,70,50,44]); //data to show or points
   const svgRef = useRef(); //to let d3 get access to the dom
+  const fullWidth= 400;
+  const fullHeight = 95;
 
   useEffect(() => {
     //setting up svg
-    const w = 400;
-    const h = 150;
+    const w = fullWidth;
+    const h = fullHeight;
     const svg = d3
       .select(svgRef.current)
-      .attr("width", w)
-      .attr("height", h)
+      .attr("width", '100%')
+      .attr("height", '100%')
       .style("background", "#00000")
       .style("margin-top", "50")
+      .attr('viewBox', `0 0 ${fullWidth} ${fullHeight}`)
       .style("overflow", "visible");
     //setting the scaling
     const xScale = d3
@@ -52,6 +55,7 @@ const Linechart = () => {
       .attr("stroke-width", "4px")
       .attr("width", "100");
   }, [data]);
+  
   return <svg ref={svgRef}></svg>;
 };
 

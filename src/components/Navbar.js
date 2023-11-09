@@ -13,15 +13,14 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
 import { Grid } from "@mui/material";
-import LineChartCardComponent from "./LineChartCardComponent";
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-import DescriptionIcon from '@mui/icons-material/Description';
-import PersonIcon from '@mui/icons-material/Person';
-import ContactsIcon from '@mui/icons-material/Contacts';
+import LineChartCardComponent from "./CardComponent";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
+import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
+import DescriptionIcon from "@mui/icons-material/Description";
+import PersonIcon from "@mui/icons-material/Person";
+import ContactsIcon from "@mui/icons-material/Contacts";
 
 const drawerWidth = 240;
 
@@ -32,27 +31,31 @@ function Navbar(props) {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-  const icons={
-    "Dashboard":<DashboardIcon/>,
-    "Accounts":<AccountBalanceWalletIcon/>,
-    "Payroll":<AttachMoneyIcon/>,
-    "Reports":<DescriptionIcon/>,
-    "Advisor":<PersonIcon/>,
-    "Contacts":<ContactsIcon/>
-
-  }
+  const icons = {
+    Dashboard: <DashboardIcon />,
+    Accounts: <AccountBalanceWalletIcon />,
+    Payroll: <AttachMoneyIcon />,
+    Reports: <DescriptionIcon />,
+    Advisor: <PersonIcon />,
+    Contacts: <ContactsIcon />,
+  };
 
   const drawer = (
     <div>
       <Toolbar />
       <Divider />
       <List>
-        {["Dashboard", "Accounts", "Payroll", "Reports","Advisor","Contacts"].map((text) => (
+        {[
+          "Dashboard",
+          "Accounts",
+          "Payroll",
+          "Reports",
+          "Advisor",
+          "Contacts",
+        ].map((text) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
-              <ListItemIcon>
-                {icons[text]}
-              </ListItemIcon>
+              <ListItemIcon>{icons[text]}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItemButton>
           </ListItem>
@@ -84,9 +87,7 @@ function Navbar(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Responsive drawer
-          </Typography>
+          {/* header on top */}
         </Toolbar>
       </AppBar>
       <Box
@@ -137,17 +138,17 @@ function Navbar(props) {
       >
         <Toolbar />
         <Grid container xs={12}>
-          <Grid item xs={12} md={6} padding={1.5}>
-           <LineChartCardComponent/>
+          <Grid item xs={12} md={6} padding={1}>
+            <LineChartCardComponent type="Checking account" />
           </Grid>
-          <Grid item xs={12} md={6} padding={1.5}>
-           
+          <Grid item xs={12} md={6} padding={1}>
+            <LineChartCardComponent type="Invoices owed to you" />
           </Grid>
-          <Grid item xs={12} md={6} padding={1.5}>
-            
+          <Grid item xs={12} md={6} padding={1}>
+            <LineChartCardComponent type="Total cash flow" />
           </Grid>
-          <Grid item xs={12} md={6} padding={1.5}>
-            
+          <Grid item xs={12} md={6} padding={1}>
+            <LineChartCardComponent type="none" />
           </Grid>
         </Grid>
       </Box>
