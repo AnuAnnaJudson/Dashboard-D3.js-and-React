@@ -21,10 +21,14 @@ import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import DescriptionIcon from "@mui/icons-material/Description";
 import PersonIcon from "@mui/icons-material/Person";
 import ContactsIcon from "@mui/icons-material/Contacts";
+import TextField from "@mui/material/TextField";
+import SearchIcon from "@mui/icons-material/Search";
+import Badge from '@mui/material/Badge';
+import NotificationsIcon from '@mui/icons-material/Notifications';
 
 const drawerWidth = 240;
 
-function Navbar(props) {
+function DashboardComponent(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -32,12 +36,14 @@ function Navbar(props) {
     setMobileOpen(!mobileOpen);
   };
   const icons = {
-    Dashboard: <DashboardIcon />,
-    Accounts: <AccountBalanceWalletIcon />,
-    Payroll: <AttachMoneyIcon />,
-    Reports: <DescriptionIcon />,
-    Advisor: <PersonIcon />,
-    Contacts: <ContactsIcon />,
+    Dashboard: <DashboardIcon sx={{ "&:hover": { color: "#FFFFFF" } }} />,
+    Accounts: (
+      <AccountBalanceWalletIcon sx={{ "&:hover": { color: "#FFFFFF" } }} />
+    ),
+    Payroll: <AttachMoneyIcon sx={{ "&:hover": { color: "#FFFFFF" } }} />,
+    Reports: <DescriptionIcon sx={{ "&:hover": { color: "#FFFFFF" } }} />,
+    Advisor: <PersonIcon sx={{ "&:hover": { color: "#FFFFFF" } }} />,
+    Contacts: <ContactsIcon sx={{ "&:hover": { color: "#FFFFFF" } }} />,
   };
 
   const drawer = (
@@ -53,8 +59,14 @@ function Navbar(props) {
           "Advisor",
           "Contacts",
         ].map((text) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
+          <ListItem
+            key={text}
+            sx={{ "&:hover": { color: "#FFFFFF" } }}
+            disablePadding
+          >
+            <ListItemButton
+              sx={{ "&:hover": { background: "#47B747", color: "#FFFFFF" } }}
+            >
               <ListItemIcon>{icons[text]}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItemButton>
@@ -77,9 +89,9 @@ function Navbar(props) {
           ml: { sm: `${drawerWidth}px` },
         }}
       >
-        <Toolbar>
+        <Toolbar sx={{ backgroundColor: "#FFFFFF" }}>
           <IconButton
-            color="inherit"
+            color="black"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
@@ -88,6 +100,31 @@ function Navbar(props) {
             <MenuIcon />
           </IconButton>
           {/* header on top */}
+          <Grid
+            container
+            xs={12}
+            sx={{ display: "flex", justifyContent: "flex-end" }}
+          >
+            <TextField
+              sx={{ backgroundColor: "#F6F7F9", border: "none" }}
+              InputProps={{
+                endAdornment: (
+                  <IconButton>
+                    <SearchIcon sx={{ color: "grey" }} />
+                  </IconButton>
+                ),
+              }}
+            />
+            <IconButton
+              size="large"
+              aria-label="show 17 new notifications"
+              color="inherit"
+            >
+              <Badge badgeContent={""} color="success" variant="small">
+                <NotificationsIcon sx={{color:"black"}}/>
+              </Badge>
+            </IconButton>
+          </Grid>
         </Toolbar>
       </AppBar>
       <Box
@@ -148,7 +185,7 @@ function Navbar(props) {
             <LineChartCardComponent type="Total cash flow" />
           </Grid>
           <Grid item xs={12} md={6} padding={1}>
-            <LineChartCardComponent type="none" />
+            <LineChartCardComponent type="Account Watchlist" />
           </Grid>
         </Grid>
       </Box>
@@ -156,7 +193,7 @@ function Navbar(props) {
   );
 }
 
-Navbar.propTypes = {
+DashboardComponent.propTypes = {
   /**
    * Injected by the documentation to work in an iframe.
    * You won't need it on your project.
@@ -164,4 +201,4 @@ Navbar.propTypes = {
   window: PropTypes.func,
 };
 
-export default Navbar;
+export default DashboardComponent;

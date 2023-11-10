@@ -1,6 +1,6 @@
 
 import "./App.css";
-import Navbar from "./components/Navbar";
+import DashboardComponent from "./components/DashboardComponent";
 
 function App() {
   
@@ -8,7 +8,7 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar/>
+      <DashboardComponent/>
     </div>
   );
 }
