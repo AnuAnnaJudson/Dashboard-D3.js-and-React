@@ -45,7 +45,7 @@ const Linechart = (props) => {
       .tickFormat((i) => i + 1)
       .tickSize(0);
 
-      if (!xAxisRef.current) {
+      // if (xAxisRef.current) {
         const xAxisGroup = svg
           .append("g")
           .call(xAxis)
@@ -54,7 +54,7 @@ const Linechart = (props) => {
   
         xAxisGroup.select(".domain").remove(); // Remove the x-axis line
         xAxisRef.current = xAxisGroup; // Save the reference
-      }
+      // }
 
     // setting up the data for svg
     svg
