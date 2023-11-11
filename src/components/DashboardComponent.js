@@ -108,7 +108,7 @@ function DashboardComponent(props) {
             <TextField
               sx={{ backgroundColor: "#F6F7F9", border: "none" }}
               InputProps={{
-                endAdornment: (
+                startAdornment: (
                   <IconButton>
                     <SearchIcon sx={{ color: "grey" }} />
                   </IconButton>
