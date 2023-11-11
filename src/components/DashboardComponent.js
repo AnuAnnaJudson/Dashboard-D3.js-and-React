@@ -13,7 +13,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
-import { Grid } from "@mui/material";
+import { Avatar, Grid } from "@mui/material";
 import LineChartCardComponent from "./CardComponent";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
@@ -124,6 +124,7 @@ function DashboardComponent(props) {
                 <NotificationsIcon sx={{color:"black"}}/>
               </Badge>
             </IconButton>
+            <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" sx={{marginTop:"6px"}} />
           </Grid>
         </Toolbar>
       </AppBar>
@@ -174,6 +175,8 @@ function DashboardComponent(props) {
         }}
       >
         <Toolbar />
+
+        {/* Contents of the page */}
         <Grid container xs={12}>
           <Grid item xs={12} md={6} padding={1}>
             <LineChartCardComponent type="Checking account" />

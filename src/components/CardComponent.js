@@ -10,6 +10,7 @@ import Linechart from "./Linechart";
 import Barchart from "./Barchart";
 import AccountWatchList from "./AccountWatchList";
 import { styled } from "@mui/material/styles";
+import { useEffect } from "react";
 
 export default function LineChartCardComponent(props) {
   const VisuallyHiddenInput = styled("input")({
@@ -24,12 +25,24 @@ export default function LineChartCardComponent(props) {
     width: 1,
   });
 
+  const [data, setData] = React.useState([]);
+
+  const handleClick = () => {
+    let newArray = [];
+    for (let i = 0; i < 11; i++) {
+      const randomValue = Math.floor(Math.random() * 100); // Adjust the range as needed
+      newArray.push(randomValue);
+    }
+    setData(newArray);
+  };
+
   const cardContent = {
-    "Checking account": <Linechart />,
+    "Checking account": <Linechart data={data} setData={setData}/>,
     "Invoices owed to you": <Barchart />,
     "Total cash flow": <DoubleBarchart />,
     "Account Watchlist": <AccountWatchList />,
   };
+
   const cardHeader = {
     "Checking account": ["Manage", "January"].map((btnText) => {
       return (
@@ -43,9 +56,7 @@ export default function LineChartCardComponent(props) {
             textTransform: "none",
           }}
           onClick={
-            btnText === "Manage"
-              ? (e) => console.log("ok")
-              : (e) => e.preventDefault()
+            btnText === "Manage" ? handleClick : (e) => e.preventDefault()
           }
         >
           {btnText}
@@ -84,7 +95,7 @@ export default function LineChartCardComponent(props) {
       );
     }),
   };
-
+  useEffect(()=>{},[data])
   return (
     <Box height="100%" width="100%">
       <Card>
